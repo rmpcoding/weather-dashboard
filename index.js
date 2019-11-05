@@ -2,10 +2,10 @@ console.log("hello world");
 $(document).ready(function() {
 
 var baseUrl = "http://api.openweathermap.org/data/2.5/"
-var state = "texas" //change with user input.
-var city = "austin" //change with user input.
+var state = "california" //change with user input.
+var city = "pasadena" //change with user input.
 var apiKey = "a059151d000029215400bdaa7965fbc2";
-var temp; 
+var temp;
 var humidity;
 var windSpeed;
 var uvIndex;
@@ -17,7 +17,7 @@ var queryUrl = baseUrl + "weather?" + "q=" + city + "," + state + "&units=imperi
 
 var fiveDayForecast; // temperature && humidity only
 
-
+var forecastUrl = baseUrl + "forecast?" + "q=" + city + "," + state + "&units=imperial&appid=" + apiKey;
 
 
 // ajax call for current city weather, excluding uv.
@@ -46,10 +46,12 @@ $.ajax({
 
 
 // ajax call for five-day weather forecast.
-// $.ajax({
-//   url: "",
-//   method: "GET"
-// })
+$.ajax({
+  url: forecastUrl,
+  method: "GET"
+}).then(function(response) {
+  console.log(response);
+})
 
 
 
