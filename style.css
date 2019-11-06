@@ -1,12 +1,20 @@
-.navbar-light {
-  background-color: blue;
+.search-city {
+  background-color: gray;
 }
 
-.city-buttons {
-  display: block;
+.five-day-forecast {
+  display: inline-block !important;
+  vertical-align: top !important;
+  background-color: rgb(244, 244, 244);
+  flex: auto;
 }
 
-.btn {
-  display: block;
+.five-day-row {
+  display: inline-block;
+  vertical-align: top;
+  flex: content;
 }
 
+/* .search-city {
+  padding-top: 8%;
+} */

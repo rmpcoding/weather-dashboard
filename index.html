@@ -2,13 +2,24 @@
 <html lang="en-us">
   <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/287eb67fab.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
+      crossorigin="anonymous"
+    />
+    <!-- font awesome -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -24,12 +35,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <link
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    /> <!-- font awesome -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
@@ -37,15 +42,25 @@
       <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
       </nav>
-      <div class="btn-group-vertical city-buttons">
-        <button type="button" class="btn btn-light">Light</button>
-        <button type="button" class="btn btn-light">Light</button>
-        <button type="button" class="btn btn-light">Light</button>
-        <button type="button" class="btn btn-light">Light</button>
-        <button type="button" class="btn btn-light">Light</button>
-        <button type="button" class="btn btn-light">Light</button>
+      <div class="row">
+        <div class="col-sm-4 pt-5 search-city">
+            <input
+            class="form-control search-input"
+            type="text"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </div>
+        <div class="col-sm-8 five-day-forecast">
+          <div class="row">
+            <p>I want to add current temperature to this row.</p>
+          </div>
+          <div class="row pl-3 five-day-row"></div>
+        </div>
       </div>
+      <!--large row end tag-->
     </div>
+    <!--large container end tag-->
   </body>
   <script src="index.js"></script>
 </html>
