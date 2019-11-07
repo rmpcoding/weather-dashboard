@@ -1,5 +1,12 @@
+span, .h1 {
+  flex: auto;
+  text-align: center;
+  padding-top: 50%;
+}
+
 .search-city {
   background-color: gray;
+  height: 1000px;
 }
 
 .five-day-forecast {
@@ -12,3 +19,14 @@
   vertical-align: top;
   flex: content;
 }
+
+.current-temp-row {
+  padding-left: 20px;
+  height: 50%;
+}
+
+.card-style {
+  background-color: rgb(137, 137, 187);
+  color: white;
+}
+

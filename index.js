@@ -98,13 +98,13 @@ $(document).ready(function() {
         var humidity = data.list[i].main.humidity;
         var body = $("body");
         var cardRow = $(".five-day-row");
+        var icon = `<i class="fas fa-temperature-high"></i>`
         var card = $("<div>").html(
           `<div class="card flex-row" style="width: 10rem;">
-          <i class="fas fa-temperature-low"></i>
-          <i class="fas fa-temperature-high"></i>
-        <div class="card-body">
+        <div class="card-body card-style">
+        ${icon}
         <h5 class="card-title">${date}</h5>
-        <p class="card-text">
+        <p class="card-text card-style">
           <h6>Tempurature: ${temp}</h6>
           <h6>Humidity: ${humidity}</h6>
         </p>
@@ -133,3 +133,4 @@ $(document).ready(function() {
 // <i class="fas fa-cloud"></i> */}
 
   // there are 8 three-hour cycles per day. 5 * 8 = 40;
+  // <i class="fas fa-temperature-high"></i>
