@@ -3,10 +3,8 @@
 }
 
 .five-day-forecast {
-  display: inline-block !important;
-  vertical-align: top !important;
   background-color: rgb(244, 244, 244);
-  flex: auto;
+  width: 100%;
 }
 
 .five-day-row {
@@ -14,7 +12,3 @@
   vertical-align: top;
   flex: content;
 }
-
-/* .search-city {
-  padding-top: 8%;
-} */

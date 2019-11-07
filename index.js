@@ -1,9 +1,24 @@
 $(document).ready(function() {
+
+// create function on submit even to store text into variable and into local storage. 
+
+  var searchButton = document.body.querySelector(".search-input")
+  console.log(searchButton);
+  
+  searchButton.addEventListener("keydown", function(enter) {
+    if (enter.keyCode === 13) {
+      console.log(searchButton.value);
+    }
+  });
+
+  console.log(searchButton);
+
   var baseUrl =
     "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/";
   var state = "california"; //change with user input.
   var city = "pasadena"; //change with user input.
   var apiKey = "a059151d000029215400bdaa7965fbc2";
+  console.log(city);
 
   var lat = 34.06; //change with user input
   var long = -118.44; //change with user input
@@ -36,6 +51,7 @@ $(document).ready(function() {
     "&units=imperial&appid=" +
     apiKey;
 
+    console.log(queryUrl);
   // ajax call function for multiple URLs
 
   function ajaxCall(weatherUrl) {
@@ -78,12 +94,12 @@ $(document).ready(function() {
         console.log(data.list[i]);
         var temp = data.list[i].main.temp;
         var date = data.list[i].dt_txt;
+        date = moment(date).format('dddd');
         var humidity = data.list[i].main.humidity;
-        console.log(date);
         var body = $("body");
         var cardRow = $(".five-day-row");
         var card = $("<div>").html(
-          `<div class="card flex-row" style="width: 18rem;">
+          `<div class="card flex-row" style="width: 10rem;">
           <i class="fas fa-temperature-low"></i>
           <i class="fas fa-temperature-high"></i>
         <div class="card-body">
