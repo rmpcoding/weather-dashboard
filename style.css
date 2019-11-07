@@ -30,3 +30,11 @@ span, .h1 {
   color: white;
 }
 
+.icon {
+  text-align: center;
+}
+
+.card-style-today {
+  background-size: cover;
+  flex: content;
+}
