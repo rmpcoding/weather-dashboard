@@ -2,22 +2,16 @@ $(document).ready(function() {
   // create function on submit even to store text into variable and into local storage.
 
   var searchButton = document.body.querySelector(".search-input");
-  console.log(searchButton);
 
   searchButton.addEventListener("keydown", function(enter) {
     if (enter.keyCode === 13) {
       searchButton = searchButton.value;
-    } else {
-      return;
-    }
-
-    console.log(searchButton);
+    } else return;
 
     var baseUrl =
       "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/";
     var city = searchButton; //change with user input.
     var apiKey = "a059151d000029215400bdaa7965fbc2";
-    console.log(city);
 
     var lat = 34.06; //change with user input
     var long = -118.44; //change with user input
@@ -118,7 +112,7 @@ $(document).ready(function() {
   }); //do not delete. end of search button function.
 }); // end of document.ready function. do not delete.
 
-// Next steps of homework:
+// Next steps:
 // Add weather condition logic for icons
 // Add state or other indicators to grab data
 // setlocalstorage, getlocalstorage to dynamically populate buttons

@@ -4,9 +4,13 @@ span, .h1 {
   padding-top: 50%;
 }
 
-.search-city {
+.search-field {
   background-color: gray;
   height: 1000px;
+}
+
+button {
+  float: right;
 }
 
 .five-day-forecast {
