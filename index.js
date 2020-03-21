@@ -13,33 +13,23 @@ $(document).ready(function() {
     var city = searchButton; //change with user input.
     var apiKey = "a059151d000029215400bdaa7965fbc2";
 
-    var lat = 34.06; //change with user input
-    var long = -118.44; //change with user input
+    var lat; // changes with user input
+    var long; // changes with user input
 
     // list of icons. More at end of page. Need to work on this as noted at bottom of page.
     var sunIcon = `<i class="fas fa-sun"></i>`;
     var cloudIcon = `<i class="fas fa-cloud"></i>`;
 
-    var queryUrl =
-      baseUrl + "weather?" + "q=" + city + "&units=imperial&appid=" + apiKey;
-    var uvUrl =
-      baseUrl +
-      "uvi?" +
-      "lat=" +
-      lat +
-      "&lon=" +
-      long +
-      "&units=imperial&appid=" +
-      apiKey;
-    var forecastUrl =
-      baseUrl + "forecast?" + "q=" + city + "&units=imperial&appid=" + apiKey;
-
+    var queryUrl = `${baseUrl}weather?q=${city}&units=imperial&appid=${apiKey}`
+    var uvUrl = `${baseUrl}uvi?lat=${lat}&lon=${long}&units=imperial&appid=${apiKey}`
+    var forecastUrl = `${baseUrl}forecast?q=${city}&units=imperial&appid=${apiKey}`
     console.log(queryUrl);
-    // ajax call function for multiple URLs
 
-    function ajaxCall(weatherUrl) {
+    // ajax call function for multiple URLs
+    // ====================================
+    function ajaxCall(weatherApiCall) {
       $.ajax({
-        url: weatherUrl,
+        url: weatherApiCall,
         method: "GET"
       }).then(function(response) {
         console.log(response);
@@ -53,8 +43,8 @@ $(document).ready(function() {
 
     function generator(data) {
       if (data.coord) {
-        var lat = data.coord.lat;
-        var long = data.coord.lon;
+        lat = data.coord.lat;
+        long = data.coord.lon;
         console.log(lat);
         console.log(long);
       }
