@@ -15,7 +15,7 @@ $(document).ready(function() {
 
         var lat; // changes with user input
         var long; // changes with user input
-
+        
         // list of icons. More at end of page. Need to work on this as noted at bottom of page.
         var sunIcon = `<i class="fas fa-sun"></i>`;
         var cloudIcon = `<i class="fas fa-cloud"></i>`;
@@ -23,10 +23,8 @@ $(document).ready(function() {
         var locationUrl = `${baseUrl}weather?q=${city}&units=imperial&appid=${apiKey}`;
         var uvUrl = `${baseUrl}uvi?lat=${lat}&lon=${long}&units=imperial&appid=${apiKey}`;
         var forecastUrl = `${baseUrl}forecast?q=${city}&units=imperial&appid=${apiKey}`;
-        console.log(locationUrl);
+        var hourlyUrl = `${baseUrl}forecast/hourly?q=${city}&units=imperial&appid=${apiKey}`;
 
-        // ajax call function for multiple URLs
-        // ====================================
         function ajaxCall(weatherApiCall) {
             $.ajax({
                 url: weatherApiCall,
@@ -39,26 +37,32 @@ $(document).ready(function() {
         ajaxCall(locationUrl);
         ajaxCall(forecastUrl);
         ajaxCall(uvUrl);
+        ajaxCall(hourlyUrl);
 
         function generator(data) {
+            let iconUrl;
+            // need to create logic function for deciding which icon to use
+
+            if (data.weather) {
+                var icon = data.weather[0].icon;
+                iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+            }
+
             if (data.coord) {
                 lat = data.coord.lat;
                 long = data.coord.lon;
             }
             if (data.main) {
-                console.log(data.main);
                 var temp = Math.floor(data.main.temp);
                 var humidity = data.main.humidity;
                 var wind = data.wind.speed;
-                date = moment(date).format('dddd');
-
                 var currentTempRow = $('.current-temp-row');
-
+                date = moment(date).format('dddd');
                 var card = $(
                     `<div class='card col-sm-11 card-style-today'>`
                 ).html(
                     `<div class="card-body card-style-today">
-                    <div class="icon">${sunIcon}</div>
+                    <img src="${iconUrl}"/>
                     <h5 class="card-title">${date + "'s Current Weather"}</h5>
                     <p class="card-text card-style">
                     <h6>Tempurature: ${temp}&deg</h6>
@@ -69,10 +73,10 @@ $(document).ready(function() {
                 );
                 currentTempRow.append(card);
             }
-
             if (data.list) {
                 for (var i = 4; i < data.list.length; i += 8) {
-                    console.log(data.list[i]);
+                    var fiveDayIcons = data.list[i].weather[0].icon;
+                    fiveDayIconUrls = `http://openweathermap.org/img/wn/${fiveDayIcons}@2x.png`;
                     var temp = data.list[i].main.temp;
                     var date = data.list[i].dt_txt;
                     date = moment(date).format('dddd');
@@ -82,7 +86,7 @@ $(document).ready(function() {
                     var card = $('<div>').html(
                         `<div class="card flex-row" style="width: 10rem;">
                         <div class="card-body card-style">
-                        <div class="icon">${sunIcon}</div>
+                        <img src="${fiveDayIconUrls}"/>
                         <h5 class="card-title">${date}</h5>
                         <p class="card-text card-style">
                         <h6>Tempurature: ${temp}&deg</h6>
@@ -92,12 +96,11 @@ $(document).ready(function() {
                         </div>`
                     );
                     cardRow.append(card);
-                } 
-            } 
-        } 
+                }
+            }
+        }
     });
 });
-
 
 // there are 8 three-hour cycles per day, which explains 40 elements in five-day forecast array. Needs to loop differently;
 // var i = five days (4); adds 8 (3-hour cycles) to loop five times, or five days.
