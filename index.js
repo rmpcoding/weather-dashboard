@@ -20,10 +20,10 @@ $(document).ready(function() {
         var sunIcon = `<i class="fas fa-sun"></i>`;
         var cloudIcon = `<i class="fas fa-cloud"></i>`;
 
-        var queryUrl = `${baseUrl}weather?q=${city}&units=imperial&appid=${apiKey}`;
+        var locationUrl = `${baseUrl}weather?q=${city}&units=imperial&appid=${apiKey}`;
         var uvUrl = `${baseUrl}uvi?lat=${lat}&lon=${long}&units=imperial&appid=${apiKey}`;
         var forecastUrl = `${baseUrl}forecast?q=${city}&units=imperial&appid=${apiKey}`;
-        console.log(queryUrl);
+        console.log(locationUrl);
 
         // ajax call function for multiple URLs
         // ====================================
@@ -36,7 +36,7 @@ $(document).ready(function() {
             });
         }
 
-        ajaxCall(queryUrl);
+        ajaxCall(locationUrl);
         ajaxCall(forecastUrl);
         ajaxCall(uvUrl);
 
@@ -47,7 +47,7 @@ $(document).ready(function() {
             }
             if (data.main) {
                 console.log(data.main);
-                var temp = data.main.temp;
+                var temp = Math.floor(data.main.temp);
                 var humidity = data.main.humidity;
                 var wind = data.wind.speed;
                 date = moment(date).format('dddd');
@@ -55,7 +55,7 @@ $(document).ready(function() {
                 var currentTempRow = $('.current-temp-row');
 
                 var card = $(
-                    "<div class='card col-sm-11 card-style-today'>"
+                    `<div class='card col-sm-11 card-style-today'>`
                 ).html(
                     `<div class="card-body card-style-today">
                     <div class="icon">${sunIcon}</div>
@@ -71,7 +71,6 @@ $(document).ready(function() {
             }
 
             if (data.list) {
-                // there are 8 three-hour cycles per day, which explains 40 elements in five-day forecast array. Needs to loop differently;
                 for (var i = 4; i < data.list.length; i += 8) {
                     console.log(data.list[i]);
                     var temp = data.list[i].main.temp;
@@ -93,11 +92,15 @@ $(document).ready(function() {
                         </div>`
                     );
                     cardRow.append(card);
-                } //do not delete
-            } //do not delete
-        } //do not delete
-    }); //do not delete. end of search button function.
-}); // end of document.ready function. do not delete.
+                } 
+            } 
+        } 
+    });
+});
+
+
+// there are 8 three-hour cycles per day, which explains 40 elements in five-day forecast array. Needs to loop differently;
+// var i = five days (4); adds 8 (3-hour cycles) to loop five times, or five days.
 
 // Next steps:
 // Add weather condition logic for icons
