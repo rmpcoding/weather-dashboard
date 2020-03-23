@@ -8,6 +8,30 @@ $(document).ready(function() {
             searchButton = searchButton.value;
         } else return;
 
+
+
+
+        // UNDER CONSTRUCTION FOR LOCAL STORAGE PURPOSES
+        // =======================================================
+        let resultsArr = JSON.parse(localStorage.getItem('city'));
+        resultsArr = resultsArr ? resultsArr : [];
+        console.log(resultsArr);
+        resultsArr.push(searchButton);
+        console.log(resultsArr);
+        localStorage.setItem('city', JSON.stringify(resultsArr))
+
+        var buttonRow = $('.search-field');
+        var button = $(
+            `<button type="button" class="btn btn-light btn-sm mt-3">`
+        ).html(JSON.parse(localStorage.getItem('city')));
+
+        buttonRow.append(button);
+        // =======================================================
+        // UNDER CONSTRUCTION FOR LOCAL STORAGE PURPOSES
+
+
+
+        
         var baseUrl =
             'https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/';
         var apiKey = 'a059151d000029215400bdaa7965fbc2';
